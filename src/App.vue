@@ -14,7 +14,7 @@
 
     <div class="col-4 card border-body mt-2 animate__animated animate__flash rounded-0"
       style="background-color: bisque;" v-for="pokemon in arraypokemons">
-      <h1 class="text-center"> ID: {{ pokemon.id }} - NOMBRE: {{ pokemon.name.toUpperCase() }}</h1>
+      <h5 class="text-center"> ID: {{ pokemon.id }} - NOMBRE: {{ pokemon.name.toUpperCase() }}</h5>
       <img class="img-fluid mx-auto d-block" :src="pokemon.img" :alt="pokemon.name"
         style="width: 200px; height: 200px;">
     </div>
@@ -30,6 +30,7 @@ import PokemonInfo from './components/PokemonInfo.vue'
 
 export default {
   components: { PokemonInfo },
+
   data() {
     return {
       arraypokemons: ref([]),
@@ -37,12 +38,14 @@ export default {
       dato: ''
     }
   },
+
   methods: {
     capturaForm() {
       if (this.nombre_pokemon != "") {
         this.buscarPokemon(this.nombre_pokemon)
       }
     },
+
     buscarPokemon(name) {
       axios.get(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         .then((response) => {
@@ -52,21 +55,17 @@ export default {
             img: response.data.sprites.front_default
           }
           this.dato = this.arraypokemons.find((elemento) => elemento.name === pokemon.name)
-
-          if (this.dato === undefined) {
-            this.arraypokemons.push(pokemon)
-          } else {
-            alert("Pokemon ya registrado o no existe")
-          }
-        })
-        .catch(err => {
-          alert("Pokemon no existe")
+          this.dato === undefined ? (this.arraypokemons.push(pokemon))
+            : (alert("Pokemon ya registrado o no existe"))
+        }).catch(err => {
+          console.log(err);
+          alert("Error al conectarse o al buscar al pokemon")
         })
     },
+
   }
 };
 </script>
-
 <style>
 
 </style>
