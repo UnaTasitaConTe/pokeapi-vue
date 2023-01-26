@@ -1,22 +1,9 @@
 <template>
-
-    <div>
-        <!-- {{ hola }} -->
-        {{ pokemon_info }}
-
-    </div>
-
+    <slot></slot>
 </template>
 
 <script>
 export default {
-    props: {
-        pokemon_info: []
-    },
-    data() {
-        return {
-            // hola: 'hola amigos'
-        }
-    }
+
 }
 </script>

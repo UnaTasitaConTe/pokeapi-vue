@@ -19,18 +19,25 @@
         style="width: 200px; height: 200px;">
     </div>
 
-  </div>
+    <PokemonInfo>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam accusamus porro minus fugiat minima quos ipsa
+        enim repellendus fuga aut! Rerum autem officia odit, placeat cum dolores ullam dolor rem?</p>
+    </PokemonInfo>
 
+
+    <footer></footer>
+
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 import { ref } from "vue";
 import PokemonInfo from './components/PokemonInfo.vue'
+import Footer from "./components/Footer.vue";
 
 export default {
-  components: { PokemonInfo },
-
+  components: { PokemonInfo, Footer },
   data() {
     return {
       arraypokemons: ref([]),
@@ -38,14 +45,17 @@ export default {
       dato: ''
     }
   },
-
+  created() {
+    if (localStorage.getItem('pokemons') != null) {
+      this.arraypokemons = JSON.parse(localStorage.getItem('pokemons'))
+    }
+  },
   methods: {
     capturaForm() {
       if (this.nombre_pokemon != "") {
         this.buscarPokemon(this.nombre_pokemon)
       }
     },
-
     buscarPokemon(name) {
       axios.get(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         .then((response) => {
@@ -57,6 +67,8 @@ export default {
           this.dato = this.arraypokemons.find((elemento) => elemento.name === pokemon.name)
           this.dato === undefined ? (this.arraypokemons.push(pokemon))
             : (alert("Pokemon ya registrado o no existe"))
+          localStorage.setItem('pokemons', JSON.stringify(this.arraypokemons));
+
         }).catch(err => {
           console.log(err);
           alert("Error al conectarse o al buscar al pokemon")
