@@ -1,8 +1,7 @@
 <template>
-  <div class="container mx-auto row">
-
+  <div class="container mb-2 mt-1">
     <form @submit.prevent="capturaForm()">
-      <div class="input-group mt-2 mb-3">
+      <div class="input-group">
         <input type="text" class="form-control rounded-0 border-dark" v-model="nombre_pokemon"
           placeholder="ingrese el nombre del pokemon o un número" aria-label="Recipient's username"
           aria-describedby="basic-addon2">
@@ -11,33 +10,34 @@
         </div>
       </div>
     </form>
-
+  </div>
+  <div class="container mx-auto row contenedor">
     <div class="col-4 card border-body mt-2 animate__animated animate__flash rounded-0"
       style="background-color: bisque;" v-for="pokemon in arraypokemons">
       <h5 class="text-center"> ID: {{ pokemon.id }} - NOMBRE: {{ pokemon.name.toUpperCase() }}</h5>
       <img class="img-fluid mx-auto d-block" :src="pokemon.img" :alt="pokemon.name"
         style="width: 200px; height: 200px;">
     </div>
-
-    <PokemonInfo>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam accusamus porro minus fugiat minima quos ipsa
-        enim repellendus fuga aut! Rerum autem officia odit, placeat cum dolores ullam dolor rem?</p>
-    </PokemonInfo>
-
-
-    <footer></footer>
-
   </div>
+  <FooterVue></FooterVue>
 </template>
+
+<style>
+.contenedor {
+  min-height: 87vh;
+  position: relative;
+}
+</style>
+
 
 <script>
 import axios from "axios";
 import { ref } from "vue";
 import PokemonInfo from './components/PokemonInfo.vue'
-import Footer from "./components/Footer.vue";
+import FooterVue from "./components/FooterVue.vue";
 
 export default {
-  components: { PokemonInfo, Footer },
+  components: { PokemonInfo, FooterVue },
   data() {
     return {
       arraypokemons: ref([]),
