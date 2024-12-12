@@ -1,5 +1,5 @@
 <template>
-    <footer class="d-flex flex-wrap justify-content-between text-center  align-items-center py-3  border-top">
+    <footer class="d-flex flex-wrap justify-content-between text-center align-items-center py-3  border-top">
         <p class="col-md-4 mb-0 text-muted text-center"><b>&copy; 2023 TASITCONTE</b></p>
         <ul class=" nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="https://github.com/Tasitaconte" target="_blank"

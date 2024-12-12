@@ -11,7 +11,7 @@
       </div>
     </form>
   </div>
-  <div class="container mx-auto row contenedor">
+  <div class="container mx-auto row ">
     <div class="col-4 card border-body mt-2 animate__animated animate__flash rounded-0"
       style="background-color: bisque;" v-for="pokemon in arraypokemons">
       <h5 class="text-center"> ID: {{ pokemon.id }} - NOMBRE: {{ pokemon.name.toUpperCase() }}</h5>
@@ -19,7 +19,7 @@
         style="width: 200px; height: 200px;">
     </div>
   </div>
-  <FooterVue></FooterVue>
+  <!-- <FooterVue></FooterVue> -->
 </template>
 
 <style>
